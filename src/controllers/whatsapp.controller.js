@@ -14,7 +14,7 @@ const verifyToken = (req, res) => {
 
         console.log("token req: " + token + " challenge: " + challenge);
 
-        if ((challenge != null && token != null) && (token === proq.env.TOKEN)) {
+        if ((challenge != null && token != null) && (token === process.env.TOKEN)) {
             res.send(challenge);
         } else {
             console.log("No es el mismo token de webhook")
