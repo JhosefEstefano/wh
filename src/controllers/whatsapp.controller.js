@@ -12,7 +12,7 @@ const verifyToken = (req, res) => {
         let token = req.query["hub.verify_token"];
         let challenge = req.query["hub.challenge"];
 
-        if (challenge != null && token != null && token === process.env.TOKEN) {
+        if ((challenge != null && token != null) && (token === "f607-2803-d100-eb5f-fec8-61f9-49d1-dd83-ea64")) {
             res.send(challenge);
         } else {
             console.log("No es el mismo token de webhook")
