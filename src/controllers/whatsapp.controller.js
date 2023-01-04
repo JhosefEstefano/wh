@@ -8,16 +8,19 @@ require('dotenv').config()
 const verifyToken = (req, res) => {
 
     try {
+
         let token = req.query["hub.verify_token"];
         let challenge = req.query["hub.challenge"];
 
         if (challenge != null && token != null && token === process.env.TOKEN) {
             res.send(challenge);
         } else {
-            res.status(400).send();
+            console.log("No es el mismo token de webhook")
+            res.status(404).send();
         }
 
     } catch (e) {
+        console.error(e)
         res.status(400).send();
     }
 }
@@ -38,9 +41,14 @@ const recivedMessage = (req, res) => {
             myConsoloe.log(messageObject);
 
             whp.SendMessageWh("Usted Dijo: " + text, number);
-        }
+            
+            console.log("Entro a obtener mensaje")
+            res.send("EVENT_RECEIVED")
 
-        res.send("EVENT_RECEIVED")
+        }else{
+            console.log("No entro. menssageObj is null")
+            res.send("EVENT_RECEIVED")
+        }
 
     } catch (e) {
         myConsoloe.log(e);
@@ -50,7 +58,7 @@ const recivedMessage = (req, res) => {
 
 
 function GetTextUser(message) {
-    
+
     let tex = "";
     let typeMeesage = message["type"];
 

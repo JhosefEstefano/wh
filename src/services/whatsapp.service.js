@@ -3,6 +3,8 @@ require('dotenv').config()
 
 function SendMessageWh(textResponse, number) {
 
+    console.log("Estoy dentro de send message")
+
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
