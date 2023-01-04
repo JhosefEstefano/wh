@@ -13,7 +13,7 @@ const verifyToken = (req, res) => {
         let challenge = req.query["hub.challenge"];
 
         console.log("token req: " + token + " challenge: " + challenge);
-        
+
         if ((challenge != null && token != null) && (token === "f607-2803-d100-eb5f-fec8-61f9-49d1-dd83-ea64")) {
             res.send(challenge);
         } else {
@@ -28,6 +28,7 @@ const verifyToken = (req, res) => {
 }
 
 const recivedMessage = (req, res) => {
+    
     try {
 
         let entry = (req.body["entry"])[0];
