@@ -31,15 +31,17 @@ const recivedMessage = (req, res) =>{
     let messageObject = value["messages"];
    
     if(typeof messageObject != "undefined"){
+        
         let text = GetTextUser(messageObject[0])
         let number = (messageObject[0])["from"] 
 
         myConsoloe.log(messageObject);
-        whp.SendMessageWh("Udted Dijo: " + text, number);
 
+        whp.SendMessageWh("Usted Dijo: " + text, number);
     }
 
     res.send("EVENT_RECEIVED")
+
    } catch (e) {
     myConsoloe.log(e);
     res.send("EVENT_RECEIVED")

@@ -2,6 +2,7 @@ const https = require("https");
 require('dotenv').config()
 
 function SendMessageWh(textResponse, number) {
+
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
@@ -35,8 +36,8 @@ function SendMessageWh(textResponse, number) {
 
     req.write(data);
     req.end();
-}
 
+}
 
 module.exports ={
     SendMessageWh

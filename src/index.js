@@ -7,5 +7,5 @@ app.use(express.json());
 app.use("/whatsapp", apiRouter);
 
 app.listen(process.env.PORT, () =>{
-    console.log("El puerto es:", process.env.PORT );
+    console.log("El puerto es:", process.env.PORT || 3000 );
 }) 
