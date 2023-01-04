@@ -1,9 +1,9 @@
 const express = require("express");
-const apiRouter = require("./routes/routes")
-const app = express();
+const body_parser = require("body-parser");
+const apiRouter = require("./routes/routes");
+const app = express().use(body_parser.json());
 require('dotenv').config()
 
-app.use(express.json());
 app.use("/whatsapp", apiRouter);
 
 app.listen(process.env.PORT, () =>{
