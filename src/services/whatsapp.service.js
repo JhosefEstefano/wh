@@ -11,7 +11,7 @@ function SendMessageWh(textResponse, number) {
             recipient_type: "individual",
             to: number,
             type: "text",
-            text: { preview_url: false, body: "Usted dijo: " + msg_body },
+            text: { preview_url: false, body: "Usted dijo: " + textResponse },
         },
         headers: {
             "Content-Type": "application/json",
