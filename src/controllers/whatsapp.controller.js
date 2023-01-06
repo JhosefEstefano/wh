@@ -7,14 +7,14 @@ require('dotenv').config()
 
 const verifyToken = (req, res) => {
 
-    try {
+    try { 
 
         let mode = req.query["hub.mode"];
         let token = req.query["hub.verify_token"];
         let challenge = req.query["hub.challenge"];
 
         if (mode && token) {
-            if (mode === "subscribe" && token === process.env.WHATSAPP_TOKEN) {
+            if (mode === "subscribe" && token === process.env.VERIFY_TOKEN) {
                 console.log("WEBHOOK_VERIFIED");
                 res.status(200).send(challenge);
             } else {
