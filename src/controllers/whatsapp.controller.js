@@ -9,52 +9,55 @@ const verifyToken = (req, res) => {
 
     try {
 
+        let mode = req.query["hub.mode"];
         let token = req.query["hub.verify_token"];
         let challenge = req.query["hub.challenge"];
 
-        console.log("token req: " + token + " challenge: " + challenge);
-
-        if ((challenge != null && token != null) && (token === process.env.TOKEN)) {
-            res.send(challenge);
-        } else {
-            console.log("No es el mismo token de webhook")
-            res.status(404).send();
+        if (mode && token) {
+            if (mode === "subscribe" && token === process.env.WHATSAPP_TOKEN) {
+                console.log("WEBHOOK_VERIFIED");
+                res.status(200).send(challenge);
+            } else {
+                res.sendStatus(403);
+            }
         }
 
     } catch (e) {
-        console.error(e)
         res.status(400).send();
     }
 }
 
+
 const recivedMessage = (req, res) => {
-    
+
     try {
 
-        let entry = (req.body["entry"])[0];
-        let changes = (entry["changes"])[0];
-        let value = changes["value"];
-        let messageObject = value["messages"];
+        let body = req.body;
+        // info on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
+        if (req.body.object) {
+            if (
+                req.body.entry &&
+                req.body.entry[0].changes &&
+                req.body.entry[0].changes[0] &&
+                req.body.entry[0].changes[0].value.messages &&
+                req.body.entry[0].changes[0].value.messages[0]
+            ) {
 
-        if (typeof messageObject != "undefined") {
+                let phone_number_id = req.body.entry[0].changes[0].value.metadata.phone_number_id;
+                let from = req.body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
+                let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
 
-            let text = GetTextUser(messageObject[0])
-            let number = (messageObject[0])["from"]
+                whp.SendMessageWh(msg_body,from);
+            }
 
-            myConsoloe.log(messageObject);
-
-            whp.SendMessageWh("Usted Dijo: " + text, number);
-            
-            console.log("Entro a obtener mensaje")
-            res.send("EVENT_RECEIVED")
-
-        }else{
-            console.log("No entro. menssageObj is null")
-            res.send("EVENT_RECEIVED")
+            res.sendStatus(200);
+        
+        } else {
+            // Return a '404 Not Found' if event is not from a WhatsApp API
+            res.sendStatus(404);
         }
 
     } catch (e) {
-        myConsoloe.log(e);
         res.send("EVENT_RECEIVED")
     }
 }
