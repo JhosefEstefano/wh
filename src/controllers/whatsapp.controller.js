@@ -2,12 +2,13 @@ const fs = require("fs");
 const myConsoloe = new console.Console(fs.createWriteStream('./logs.txt'))
 const whp = require("../services/whatsapp.service")
 
+const samples = require("../shared/sampleModel")
 
 require('dotenv').config()
 
 const verifyToken = (req, res) => {
 
-    try { 
+    try {
 
         let mode = req.query["hub.mode"];
         let token = req.query["hub.verify_token"];
@@ -43,17 +44,62 @@ const recivedMessage = (req, res) => {
                 req.body.entry[0].changes[0].value.messages[0]
             ) {
 
-                console.log("DENTRO DEL BODY PARA ENVIAR MENSAJE ")
 
                 let phone_number_id = req.body.entry[0].changes[0].value.metadata.phone_number_id;
                 let from = req.body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
                 let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
 
-                whp.SendMessageWh(msg_body,from);
+
+                let type = GetType(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
+
+                switch (type) {
+                    case "image":
+                        let modelImage = samples.SampleImage(from);
+                        whp.SendMessageWh(modelImage);
+
+                        break;
+                    case "text":
+                        let modelText = samples.SampleText("Holaaaaa usuario", from);
+                        whp.SendMessageWh(modelText);
+
+                        break;
+                    case "video":
+                        let modelVideo = samples.SampleVideo(from);
+                        whp.SendMessageWh(modelVideo);
+
+                    case "audio":
+                        let modelAudio = samples.SampleAudio(from);
+                        whp.SendMessageWh(modelAudio);
+
+                    case "document":
+                        let modelDocument = samples.SampleDocument(from);
+                        whp.SendMessageWh(modelDocument);
+
+                    case "button":
+                        let modelButton = samples.SampleButtons(from);
+                        whp.SendMessageWh(modelButton);
+
+                    case "list":
+                        let modelList = samples.SampleList(from);
+                        whp.SendMessageWh(modelList);
+
+                        break;
+                        case "location":
+                            let modelLocation = samples.SampleLocation(from);
+                            whp.SendMessageWh(modelLocation);
+    
+                            break;
+                    default:
+                        let modelTextError = samples.SampleText("No te entendi", from);
+                        whp.SendMessageWh(modelTextError);
+                        break;
+                }
+
+
             }
 
             res.sendStatus(200);
-        
+
         } else {
             // Return a '404 Not Found' if event is not from a WhatsApp API
             res.sendStatus(404);
@@ -64,6 +110,12 @@ const recivedMessage = (req, res) => {
     }
 }
 
+
+function GetType(message) {
+
+    return typeMeesage = message["type"];
+
+}
 
 function GetTextUser(message) {
 
