@@ -50,7 +50,7 @@ const recivedMessage = (req, res) => {
                 let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
 
 
-                let type = GetType(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
+                let type = GetTextUser(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
 
                 switch (type) {
                     case "image":
