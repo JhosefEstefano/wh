@@ -126,12 +126,12 @@ function SampleList(number) {
                         "title": "Grupo #1",
                         "rows": [
                             {
-                                "id": "g001",
+                                "id": "001",
                                 "title": "Opcion 1 grupo 1",
                                 "description": "Esta es la opcion 1 del grupo uno de la una lista"
                             },
                             {
-                                "id": "g002",
+                                "id": "002",
                                 "title": "Opcion 2 grupo 1",
                                 "description": "Esta es la opcion 2 del grupo uno de la una lista"
                             }
@@ -141,12 +141,12 @@ function SampleList(number) {
                         "title": "Grupo #2",
                         "rows": [
                             {
-                                "id": "g2001",
+                                "id": "004",
                                 "title": "Opcion 1 grupo 2",
                                 "description": "Esta es la opcion 2 del grupo dos de la una lista"
                             },
                             {
-                                "id": "g2001",
+                                "id": "005",
                                 "title": "Opcion 2 grupo 2",
                                 "description": "Esta es la opcion 2 del grupo dos de la una lista"
                             }
