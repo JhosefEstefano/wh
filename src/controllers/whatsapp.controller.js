@@ -52,7 +52,7 @@ const recivedMessage = (req, res) => {
 
                 let type = GetTextUser(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
 
-                switch (type) {
+                switch (type.toLocaleLowerCase()) {
                     case "image":
                         let modelImage = samples.SampleImage(from);
                         whp.SendMessageWh(modelImage);
@@ -66,29 +66,29 @@ const recivedMessage = (req, res) => {
                     case "video":
                         let modelVideo = samples.SampleVideo(from);
                         whp.SendMessageWh(modelVideo);
-
+                        break;
                     case "audio":
                         let modelAudio = samples.SampleAudio(from);
                         whp.SendMessageWh(modelAudio);
-
+                        break;
                     case "document":
                         let modelDocument = samples.SampleDocument(from);
                         whp.SendMessageWh(modelDocument);
-
+                        break;
                     case "button":
                         let modelButton = samples.SampleButtons(from);
                         whp.SendMessageWh(modelButton);
-
+                        break;
                     case "list":
                         let modelList = samples.SampleList(from);
                         whp.SendMessageWh(modelList);
 
                         break;
-                        case "location":
-                            let modelLocation = samples.SampleLocation(from);
-                            whp.SendMessageWh(modelLocation);
-    
-                            break;
+                    case "location":
+                        let modelLocation = samples.SampleLocation(from);
+                        whp.SendMessageWh(modelLocation);
+
+                        break;
                     default:
                         let modelTextError = samples.SampleText("No te entendi", from);
                         whp.SendMessageWh(modelTextError);
