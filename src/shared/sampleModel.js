@@ -111,44 +111,44 @@ function SampleList(number) {
             "type": "list",
             "header": {
                 "type": "text",
-                "text": "<HEADER_TEXT>"
+                "text": "Selecciona una opcion"
             },
             "body": {
-                "text": "<BODY_TEXT>"
+                "text": "Las siguientes son un listado de opciones"
             },
             "footer": {
-                "text": "<FOOTER_TEXT>"
+                "text": "Selecciona bien"
             },
             "action": {
-                "button": "<BUTTON_TEXT>",
+                "button": "Ver las opciones",
                 "sections": [
                     {
-                        "title": "<LIST_SECTION_1_TITLE>",
+                        "title": "Grupo #1",
                         "rows": [
                             {
-                                "id": "<LIST_SECTION_1_ROW_1_ID>",
-                                "title": "<SECTION_1_ROW_1_TITLE>",
-                                "description": "<SECTION_1_ROW_1_DESC>"
+                                "id": "g001",
+                                "title": "Opcion 1 grupo 1",
+                                "description": "Esta es la opcion 1 del grupo uno de la una lista"
                             },
                             {
-                                "id": "<LIST_SECTION_1_ROW_2_ID>",
-                                "title": "<SECTION_1_ROW_2_TITLE>",
-                                "description": "<SECTION_1_ROW_2_DESC>"
+                                "id": "g002",
+                                "title": "Opcion 2 grupo 1",
+                                "description": "Esta es la opcion 2 del grupo uno de la una lista"
                             }
                         ]
                     },
                     {
-                        "title": "<LIST_SECTION_2_TITLE>",
+                        "title": "Grupo #2",
                         "rows": [
                             {
-                                "id": "<LIST_SECTION_2_ROW_1_ID>",
-                                "title": "<SECTION_2_ROW_1_TITLE>",
-                                "description": "<SECTION_2_ROW_1_DESC>"
+                                "id": "g2001",
+                                "title": "Opcion 1 grupo 2",
+                                "description": "Esta es la opcion 2 del grupo dos de la una lista"
                             },
                             {
-                                "id": "<LIST_SECTION_2_ROW_2_ID>",
-                                "title": "<SECTION_2_ROW_2_TITLE>",
-                                "description": "<SECTION_2_ROW_2_DESC>"
+                                "id": "g2001",
+                                "title": "Opcion 2 grupo 2",
+                                "description": "Esta es la opcion 2 del grupo dos de la una lista"
                             }
                         ]
                     }
