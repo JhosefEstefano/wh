@@ -106,51 +106,55 @@ function SampleList(number) {
         messaging_product: "whatsapp",
         recipient_type: "individual",
         to: number,
-        type: "interactive",
-        interactive: {
-            type: "list",
-            body: {
-                text: "Estas son las opciones"
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "header": {
+                "type": "text",
+                "text": "<HEADER_TEXT>"
             },
-            footer: {
-                text: "Seleccione una opcion de la lista"
+            "body": {
+                "text": "<BODY_TEXT>"
             },
-            action: {
-                button: "Ver opciones",
-                sections: [
+            "footer": {
+                "text": "<FOOTER_TEXT>"
+            },
+            "action": {
+                "button": "<BUTTON_TEXT>",
+                "sections": [
                     {
-                        title: "Compra y venta de productos",
-                        rows: [
+                        "title": "<LIST_SECTION_1_TITLE>",
+                        "rows": [
                             {
-                                id: "main-comprar",
-                                title: "Comprar",
-                                description: "Compra los mejores productos"
+                                "id": "<LIST_SECTION_1_ROW_1_ID>",
+                                "title": "<SECTION_1_ROW_1_TITLE>",
+                                "description": "<SECTION_1_ROW_1_DESC>"
                             },
                             {
-                                id: "main-vender",
-                                title: "Vender",
-                                description: "Vende tus productos"
+                                "id": "<LIST_SECTION_1_ROW_2_ID>",
+                                "title": "<SECTION_1_ROW_2_TITLE>",
+                                "description": "<SECTION_1_ROW_2_DESC>"
                             }
                         ]
                     },
                     {
-                        title: "Centro de atención 📍",
-                        rows: [
+                        "title": "<LIST_SECTION_2_TITLE>",
+                        "rows": [
                             {
-                                id: "main-agencia",
-                                title: "Agencia Central",
-                                description: "Puedes visitar nuestra agencia"
+                                "id": "<LIST_SECTION_2_ROW_1_ID>",
+                                "title": "<SECTION_2_ROW_1_TITLE>",
+                                "description": "<SECTION_2_ROW_1_DESC>"
                             },
                             {
-                                id: "main-contacto",
-                                title: "Centro de contacto",
-                                description: "Te atendere en un instante."
+                                "id": "<LIST_SECTION_2_ROW_2_ID>",
+                                "title": "<SECTION_2_ROW_2_TITLE>",
+                                "description": "<SECTION_2_ROW_2_DESC>"
                             }
                         ]
                     }
                 ]
             }
-        },
+        }
     });
 
     return data;
