@@ -30,7 +30,8 @@ const verifyToken = (req, res) => {
 const recivedMessage = (req, res) => {
 
     try {
-
+        myConsoloe.Console(req);
+        console.log(JSON.parse(req));
         let body = req.body;
         // info on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
         if (req.body.object) {
