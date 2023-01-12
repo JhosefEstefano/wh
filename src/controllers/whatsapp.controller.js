@@ -54,8 +54,8 @@ const recivedMessage = (req, res) => {
                 }            
             }
 
-            res.sendStatus(200);
             console.log(JSON.parse(body));
+            res.sendStatus(200);
         } else {
             // Return a '404 Not Found' if event is not from a WhatsApp API
             res.sendStatus(404);
