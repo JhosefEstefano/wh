@@ -1,8 +1,6 @@
 const fs = require("fs");
 const myConsoloe = new console.Console(fs.createWriteStream('./logs.txt'))
-const whp = require("../services/whatsapp.service")
-
-const samples = require("../shared/sampleModel")
+const processMessage = require("../shared/processMessage")
 
 require('dotenv').config()
 
@@ -44,58 +42,15 @@ const recivedMessage = (req, res) => {
                 req.body.entry[0].changes[0].value.messages[0]
             ) {
 
-
                 let phone_number_id = req.body.entry[0].changes[0].value.metadata.phone_number_id;
                 let from = req.body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
                 let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
 
+                let type = GetType(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
 
-                let type = GetTextUser(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
-
-                switch (type.toLocaleLowerCase()) {
-                    case "image":
-                        let modelImage = samples.SampleImage(from);
-                        whp.SendMessageWh(modelImage);
-
-                        break;
-                    case "text":
-                        let modelText = samples.SampleText("Holaaaaa usuario", from);
-                        whp.SendMessageWh(modelText);
-
-                        break;
-                    case "video":
-                        let modelVideo = samples.SampleVideo(from);
-                        whp.SendMessageWh(modelVideo);
-                        break;
-                    case "audio":
-                        let modelAudio = samples.SampleAudio(from);
-                        whp.SendMessageWh(modelAudio);
-                        break;
-                    case "document":
-                        let modelDocument = samples.SampleDocument(from);
-                        whp.SendMessageWh(modelDocument);
-                        break;
-                    case "button":
-                        let modelButton = samples.SampleButtons(from);
-                        whp.SendMessageWh(modelButton);
-                        break;
-                    case "list":
-                        let modelList = samples.SampleList(from);
-                        whp.SendMessageWh(modelList);
-
-                        break;
-                    case "location":
-                        let modelLocation = samples.SampleLocation(from);
-                        whp.SendMessageWh(modelLocation);
-
-                        break;
-                    default:
-                        let modelTextError = samples.SampleText("No te entendi", from);
-                        whp.SendMessageWh(modelTextError);
-                        break;
+                if (msg_body != "" || msg_body != undefined) {
+                    processMessage.processMessage(msg_body, from);
                 }
-
-
             }
 
             res.sendStatus(200);
