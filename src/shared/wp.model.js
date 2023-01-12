@@ -61,13 +61,13 @@ function ListLocations(number) {
                 "text": "Ubicaciones 🗺"
             },
             "body": {
-                "text": "Estas son las ubicaciones disponibles en este momento 🏢📍"
+                "text": "Estas son las ubicaciones disponibles en este momento"
             },
             "footer": {
                 "text": "recuerda que nuestro horario de atención es de 8:00 a 17:00"
             },
             "action": {
-                "button": "Ubicaciones 📍",
+                "button": "Ubicaciones",
                 "sections": [
                     {
                         "title": "Grupo #1",
