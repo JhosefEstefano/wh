@@ -21,7 +21,7 @@ function MessageButtons(number) {
         interactive: {
             type: "button",
             body: {
-                text: "Esto es lo que puedo hacer, dime como te puedo ayudar 😊"
+                text: "Esto es lo que puedo hacer, dime como te puedo ayudar"
             },
             action: {
                 buttons: [
