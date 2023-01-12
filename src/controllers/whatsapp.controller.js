@@ -44,13 +44,16 @@ const recivedMessage = (req, res) => {
 
                 let phone_number_id = req.body.entry[0].changes[0].value.metadata.phone_number_id;
                 let from = req.body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
-                let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
+                let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; 
+                let msg_reply = req.body.entry[0].changes[0].value.messages[0]; // extract the message text from the webhook payload
 
                 let type = GetType(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
 
                 if (msg_body != "" || msg_body != undefined) {
                     processMessage.processMessage(msg_body, from);
                 }
+
+                console.log(msg_reply)
             }
 
             res.sendStatus(200);
