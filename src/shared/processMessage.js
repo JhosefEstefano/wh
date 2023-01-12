@@ -24,11 +24,11 @@ function processMessage(textUser, number) {
         model = modelWp.MessageText("Fue un gusto ayudarte, recuerda que siempre puedes consultarnos por este u otros medios. 😃", number);
         models.push(model);
 
-    } else if (textUser.includes("agencias disponibles 🏢")) {
+    } else if (textUser.includes("agencias disponibles")) {
         model = modelWp.ListLocations(number);
         models.push(model);
     }
-    else if (textUser.includes("opciones de contacto 📱")) {
+    else if (textUser.includes("opciones de contacto")) {
         model = modelWp.MessageText("Puedes ponerte en contanto con nosotros a través de nuestras redes sociales como:\n Facebook, Instagram y tambien por nuestro correo electronico ayuda@intelaf.com 📧", number);
         models.push(model);
     }
@@ -45,6 +45,8 @@ function processMessage(textUser, number) {
         model = modelWp.MessageText("Recuerda que aún soy nuevo en esto y tal vez no te entendi muy bien. ¿Podrias volver a repetirlo? 🤔", number);
         models.push(model);
     }
+
+    console.log(models);
 
     models.forEach(mod => {
         service.SendMessageWh(mod);

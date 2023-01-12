@@ -29,14 +29,14 @@ function MessageButtons(number) {
                         type: "reply",
                         reply: {
                             id: "001",
-                            title: "Agencias disponibles 🏢"
+                            title: "Agencias disponibles"
                         }
                     },
                     {
                         type: "reply",
                         reply: {
                             id: "002",
-                            title: "Opciones de contacto 📱"
+                            title: "Opciones de contacto"
                         }
                     }
                 ]
