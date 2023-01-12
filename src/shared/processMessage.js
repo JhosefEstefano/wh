@@ -12,8 +12,7 @@ function processMessage(textUser, number) {
         // Saludo
         model = modelWp.MessageText("Hola, es un gusto saludarte ✌. Por favor selecciona una opción del menu para continuar", number);
         models.push(model);
-        model = modelWp.MessageButtons(number);
-        models.push(model);
+        models.push(modelWp.MessageButtons(number));
     } else if (textUser.includes("gracias") || textUser.includes("entendido")) {
         // Agradecimiento
         model = modelWp.MessageText("De nada usuario, recuerda que estamos para ayudarte. 😊", number);
@@ -24,7 +23,7 @@ function processMessage(textUser, number) {
         model = modelWp.MessageText("Fue un gusto ayudarte, recuerda que siempre puedes consultarnos por este u otros medios. 😃", number);
         models.push(model);
 
-    } else if (textUser.includes("agencias disponibles")) {
+    } else if (textUser.includes("agencias") || textUser.includes("disponibles")) {
         model = modelWp.ListLocations(number);
         models.push(model);
     }
@@ -45,8 +44,6 @@ function processMessage(textUser, number) {
         model = modelWp.MessageText("Recuerda que aún soy nuevo en esto y tal vez no te entendi muy bien. ¿Podrias volver a repetirlo? 🤔", number);
         models.push(model);
     }
-
-    console.log(models);
 
     models.forEach(mod => {
         service.SendMessageWh(mod);
