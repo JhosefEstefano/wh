@@ -47,13 +47,13 @@ const recivedMessage = (req, res) => {
                 let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; 
                 let msg_reply = req.body.entry[0].changes[0].value.messages[0]; // extract the message text from the webhook payload
 
-                let type = GetType(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
+                let type = GetTextUser(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
 
-                if (msg_body != "" || msg_body != undefined) {
+                if (type != "" || type != undefined) {
                     processMessage.processMessage(msg_body, from);
                 }     
                 
-                console.log(msg_reply);
+                console.log(type);
             }
 
             console.log(JSON.parse(body));
