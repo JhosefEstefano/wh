@@ -56,13 +56,13 @@ const recivedMessage = (req, res) => {
                 console.log(type);
             }
 
-            console.log(req.body.entry[0].changes[0].value.messages[0]);
+            console.log(GetTextUser(req.body.entry[0].changes[0].value.messages[0]));
 
             console.log(JSON.parse(body));
             res.sendStatus(200);
         } else {
             // Return a '404 Not Found' if event is not from a WhatsApp API
-            console.log(req.body.entry[0].changes[0].value.messages[0]);
+            console.log(GetTextUser(req.body.entry[0].changes[0].value.messages[0]));
             res.sendStatus(404);
         }
 
@@ -83,6 +83,8 @@ function GetTextUser(message) {
     let tex = "";
     let typeMeesage = message["type"];
 
+    console.log("Dentro de la funcion para obtener el mensaje")
+
     switch (typeMeesage) {
 
         case "text":
@@ -94,7 +96,7 @@ function GetTextUser(message) {
             let interactiveObject = message["interactive"];
             let typeInteractive = interactiveObject["type"];
 
-            myConsoloe.log(interactiveObject);
+            myConsoloe.log(typeInteractive);
 
             if (typeInteractive === "button_reply") {
                 tex = (interactiveObject["button_reply"])["title"];

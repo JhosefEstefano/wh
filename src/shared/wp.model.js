@@ -28,14 +28,14 @@ function MessageButtons(number) {
                     {
                         type: "reply",
                         reply: {
-                            id: "001",
+                            id: "agencias",
                             title: "Agencias disponibles"
                         }
                     },
                     {
                         type: "reply",
                         reply: {
-                            id: "002",
+                            id: "opciones",
                             title: "Opciones de contacto"
                         }
                     }
@@ -97,44 +97,27 @@ function ListLocations(number) {
             "type": "list",
             "header": {
                 "type": "text",
-                "text": "Selecciona una opcion"
+                "text": "Ubicaciones"
             },
             "body": {
-                "text": "Las siguientes son un listado de opciones"
+                "text": "Estas son las ubicaciones disponibles en este momento"
             },
             "footer": {
-                "text": "Selecciona bien"
+                "text": "Recuerda que nuestro horario de atención es de 8:00 a 17:00"
             },
             "action": {
-                "button": "Ver las opciones",
+                "button": "Ver las Ubicaciones",
                 "sections": [
                     {
                         "title": "Grupo #1",
                         "rows": [
                             {
-                                "id": "001",
-                                "title": "Opcion 1 grupo 1",
-                                "description": "Esta es la opcion 1 del grupo uno de la una lista"
+                                "id": "naranjo",
+                                "title": "El Naranjo",
                             },
                             {
-                                "id": "002",
-                                "title": "Opcion 2 grupo 1",
-                                "description": "Esta es la opcion 2 del grupo uno de la una lista"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Grupo #2",
-                        "rows": [
-                            {
-                                "id": "004",
-                                "title": "Opcion 1 grupo 2",
-                                "description": "Esta es la opcion 2 del grupo dos de la una lista"
-                            },
-                            {
-                                "id": "005",
-                                "title": "Opcion 2 grupo 2",
-                                "description": "Esta es la opcion 2 del grupo dos de la una lista"
+                                "id": "outlet",
+                                "title": "OUTLET",
                             }
                         ]
                     }
