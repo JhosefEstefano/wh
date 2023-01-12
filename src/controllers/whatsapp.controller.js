@@ -56,6 +56,8 @@ const recivedMessage = (req, res) => {
                 console.log(type);
             }
 
+            console.log(req.body.entry[0].changes[0].value.messages[0]);
+
             console.log(JSON.parse(body));
             res.sendStatus(200);
         } else {
@@ -99,7 +101,6 @@ function GetTextUser(message) {
             } else {
                 tex = (interactiveObject["list_reply"])["title"];
             }
-
             break;
     }
 
