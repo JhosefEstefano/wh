@@ -51,7 +51,9 @@ const recivedMessage = (req, res) => {
 
                 if (msg_body != "" || msg_body != undefined) {
                     processMessage.processMessage(msg_body, from);
-                }            
+                }     
+                
+                console.log(msg_reply);
             }
 
             console.log(JSON.parse(body));
