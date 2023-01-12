@@ -58,7 +58,7 @@ function ListLocations(number) {
             "type": "list",
             "header": {
                 "type": "text",
-                "text": "Ubicaciones 🗺"
+                "text": "Ubicaciones"
             },
             "body": {
                 "text": "Estas son las ubicaciones disponibles en este momento"
