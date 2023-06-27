@@ -30,8 +30,15 @@ const verifyToken = (req, res) => {
 const recivedMessage = (req, res) => {
 
     try {
-        console.log(JSON.parse(req));
         let body = req.body;
+        let messageOrginal = GetTextUser(req.body.entry[0].changes[0].value.messages[0]);
+        let type = req.body.entry[0].changes[0].value.messages[0].type;
+
+        if (type == 'interactive') {
+
+            processMessage.processMessage(messageOrginal, req.body.entry[0].changes[0].value.messages[0].from);
+        }
+
         // info on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
         if (req.body.object) {
             if (
@@ -45,27 +52,21 @@ const recivedMessage = (req, res) => {
 
                 let phone_number_id = req.body.entry[0].changes[0].value.metadata.phone_number_id;
                 let from = req.body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
-                let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; 
+                let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body;
                 let msg_reply = req.body.entry[0].changes[0].value.messages[0]; // extract the message text from the webhook payload
 
-                let type = GetTextUser(req.body.entry[0].changes[0].value.message || req.body.entry[0].changes[0].value.messages[0])
-
-                if (type != "" || type != undefined) {
+                if (msg_body != "" || msg_body != undefined) {
                     processMessage.processMessage(msg_body, from);
-                }     
-                
-                console.log(type);
+                }
             }
 
-            console.log(GetTextUser(req.body.entry[0].changes[0].value.messages[0]));
-
-            console.log(JSON.parse(body));
             res.sendStatus(200);
         } else {
             // Return a '404 Not Found' if event is not from a WhatsApp API
-            console.log(GetTextUser(req.body.entry[0].changes[0].value.messages[0]));
+
             res.sendStatus(404);
         }
+
 
     } catch (e) {
         res.send("EVENT_RECEIVED")
@@ -84,8 +85,6 @@ function GetTextUser(message) {
     let tex = "";
     let typeMeesage = message["type"];
 
-    console.log("Dentro de la funcion para obtener el mensaje")
-
     switch (typeMeesage) {
 
         case "text":
@@ -100,13 +99,13 @@ function GetTextUser(message) {
             myConsoloe.log(typeInteractive);
 
             if (typeInteractive === "button_reply") {
-                tex = (interactiveObject["button_reply"])["title"];
+                tex = (interactiveObject["button_reply"])["id"];
             } else {
-                tex = (interactiveObject["list_reply"])["title"];
+                tex = (interactiveObject["list_reply"])["id"];
             }
             break;
     }
-
+    console.log(tex);
     return tex;
 }
 
